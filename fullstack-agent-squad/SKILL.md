@@ -1,6 +1,6 @@
 ---
 name: fullstack-agent-squad
-description: "Agent orchestration patterns for full-stack projects using SuperClaude agent personas and subagent spawning. Defines how to decompose features into parallel agent tasks with dependency ordering, map domain skills to agent roles, and coordinate multi-agent workflows with persistent session memory. Use this skill whenever /sc:spawn or /sc:task is invoked on a full-stack feature, when the user wants parallel agent execution, when breaking a feature into backend + frontend + security + testing subtasks, or when setting up a new project's CLAUDE.md with agent routing."
+description: "Agent orchestration patterns for full-stack projects using SuperClaude /sc: commands and agent personas. Defines how to decompose features into parallel agent tasks with dependency ordering, map domain skills to agent roles (@backend-architect, @frontend-architect, @security-engineer, @quality-engineer, @devops), coordinate Wave→Checkpoint→Wave execution, and maintain persistent session memory via KNOWLEDGE.md. Use this skill whenever /sc:spawn or /sc:task is called on a full-stack feature, when breaking work into multi-agent subtasks, when setting up a new project CLAUDE.md with agent routing, or when coordinating parallel backend + frontend + security + testing workflows."
 ---
 
 # Full-Stack Agent Squad Orchestration
@@ -46,7 +46,7 @@ description: "Agent orchestration patterns for full-stack projects using SuperCl
 
 **Owns:** Edge case identification, validation logic review, mobile responsiveness checks, integration test scenarios, cross-browser verification.
 
-**Output format:** Test scenarios document + identified edge cases + UX issues list.
+**Output format:** Test scenarios document + identified edge cases + UX issues list. Reviews after each Story completes.
 
 ### @agent-devops
 
@@ -67,18 +67,21 @@ When `/sc:spawn` or `/sc:task` is called with a full-stack feature:
 Epic: [Feature Name]
 │
 ├── Story: Schema & Backend (@agent-backend-architect)
+│   Skills loaded: [relevant skills from mapping above]
 │   ├── Task: Database migration (tables, indexes, constraints)
 │   ├── Task: Postgres functions/triggers
 │   ├── Task: Zod validation schemas
 │   └── Task: Server Actions (CRUD operations)
 │
 ├── Story: Frontend UI (@agent-frontend-architect) [depends on Schema]
+│   Skills loaded: [relevant skills from mapping above]
 │   ├── Task: Page component (Server Component for data fetching)
 │   ├── Task: Interactive components (Client Components for forms/modals)
 │   ├── Task: Mobile-responsive layout (bottom sheet, cards, touch targets)
 │   └── Task: Status indicators and feedback (badges, toasts, loading)
 │
 ├── Story: Security Review (@agent-security-engineer) [parallel with Frontend]
+│   Skills loaded: supabase-nextjs-fullstack (auth/RLS section)
 │   ├── Task: RLS policies for new tables
 │   ├── Task: Server Action input validation audit
 │   └── Task: Auth/permission checks
@@ -91,9 +94,7 @@ Epic: [Feature Name]
 
 ---
 
-## 3. Execution Strategy
-
-### Wave → Checkpoint → Wave Pattern
+## 3. Execution Strategy — Wave → Checkpoint → Wave
 
 ```
 Wave 1 (parallel):
@@ -135,6 +136,7 @@ Checkpoint 3:
 - Frontend CAN start layout/shell components in parallel with backend
 - Security MUST review RLS before feature ships
 - Quality runs LAST — needs complete feature to review
+- Each wave can have internal parallelism (multiple backend tasks at once)
 
 ---
 
@@ -166,7 +168,7 @@ Per subagent budget:
 
 ## 5. Session Memory Protocol
 
-After each feature completes, append to the project's `KNOWLEDGE.md`:
+After each feature module completes, append to the project's `KNOWLEDGE.md`:
 
 ```markdown
 ## [Feature Name] - [YYYY-MM-DD]
@@ -196,6 +198,7 @@ After each feature completes, append to the project's `KNOWLEDGE.md`:
 - Session 2 builds Payments → reads KNOWLEDGE.md, follows same patterns
 - Session 5 builds Notifications → has full history of all decisions
 - New team member's first session → reads KNOWLEDGE.md, understands everything
+- New sessions always start by reading KNOWLEDGE.md
 
 ---
 
@@ -231,27 +234,38 @@ When agents produce conflicting outputs:
 Epic: Payments Module
 │
 ├── Story: Schema & Backend (@agent-backend-architect)
-│   ├── Task: billing_periods + payments + receiving_accounts migration
-│   ├── Task: update_billing_period_totals trigger
-│   ├── Task: detect_overdue_billing_periods cron function
-│   ├── Task: generate_billing_periods auto-generation function
-│   ├── Task: Zod schemas (recordPaymentSchema, createBillingPeriodSchema)
-│   └── Task: Server Actions (recordPayment, getBillingPeriods, getOverdue)
 │   Skills: supabase-nextjs-fullstack, multi-currency-ledger
+│   ├── Task: billing_periods + payments + receiving_accounts migration
+│   │   File: supabase/migrations/00X_payments.sql
+│   ├── Task: update_billing_period_totals trigger
+│   │   File: (same migration)
+│   ├── Task: detect_overdue_billing_periods cron function
+│   │   File: (same migration)
+│   ├── Task: generate_billing_periods auto-generation function
+│   │   File: (same migration)
+│   ├── Task: Zod schemas (recordPaymentSchema, createBillingPeriodSchema)
+│   │   File: src/lib/schemas/billing.ts
+│   └── Task: Server Actions (recordPayment, getBillingPeriods, getOverdue)
+│       File: src/app/(dashboard)/billing/actions.ts
 │
 ├── Story: Frontend UI (@agent-frontend-architect) [after Wave 1]
-│   ├── Task: Rent ledger page (billing period cards + nested payment list)
-│   ├── Task: Record payment MobileSheet (currency selector, method chips)
-│   ├── Task: Overdue ActionQueue component
-│   ├── Task: Payment KPI cards (revenue, outstanding, overdue count)
-│   └── Task: All-building overview with currency filter
 │   Skills: mobile-first-dashboard, multi-currency-ledger (formatCurrency)
+│   ├── Task: Rent ledger page (billing period cards + nested payment list)
+│   │   File: src/app/(dashboard)/billing/page.tsx
+│   ├── Task: Record payment MobileSheet (currency selector, method chips)
+│   │   File: src/components/billing/RecordPaymentSheet.tsx
+│   ├── Task: Overdue ActionQueue component
+│   │   File: src/components/billing/OverdueList.tsx
+│   ├── Task: Payment KPI cards (revenue, outstanding, overdue count)
+│   │   File: src/components/dashboard/PaymentKPIs.tsx
+│   └── Task: All-building overview with currency filter
+│       File: src/app/(dashboard)/billing/overview/page.tsx
 │
 ├── Story: Security (@agent-security-engineer) [parallel with Wave 2]
+│   Skills: supabase-nextjs-fullstack (auth/RLS section)
 │   ├── Task: RLS for billing_periods (org-scoped read, admin write)
 │   ├── Task: RLS for payments (org-scoped, no delete policy)
 │   └── Task: Server Action audit (Zod validation complete? Admin client justified?)
-│   Skills: supabase-nextjs-fullstack (RLS section)
 │
 └── Story: Quality (@agent-quality-engineer) [Wave 3]
     ├── Task: Partial payment → full payment transition
@@ -285,9 +299,9 @@ Checkpoint 3: ✓ KNOWLEDGE.md updated, ready to ship
 
 ---
 
-## 8. Project CLAUDE.md Agent Routing Block
+## 8. Project CLAUDE.md Agent Routing Template
 
-Add this to any project's `CLAUDE.md` to enable automatic agent routing:
+Add this to any new project's `CLAUDE.md` to enable automatic agent routing:
 
 ```markdown
 ## Agent Routing
@@ -298,6 +312,13 @@ When spawning subagents for features, use fullstack-agent-squad skill for:
 - Wave execution ordering
 - Post-feature KNOWLEDGE.md updates
 
+### Role Assignments
+- Schema/migration/triggers → @agent-backend-architect + supabase-nextjs-fullstack + [domain skills]
+- React components/pages → @agent-frontend-architect + mobile-first-dashboard
+- Auth/RLS/security → @agent-security-engineer + supabase-nextjs-fullstack
+- After each module → @agent-quality-engineer reviews all outputs
+- Deployment → @agent-devops
+
 ### Active Skills
 - supabase-nextjs-fullstack (backend + frontend patterns)
 - multi-currency-ledger (financial logic)
@@ -305,4 +326,7 @@ When spawning subagents for features, use fullstack-agent-squad skill for:
 - notification-queue (messaging system)
 - mobile-first-dashboard (UI components)
 - fullstack-agent-squad (this orchestration layer)
+
+## Session Memory
+Maintain KNOWLEDGE.md at project root. Read at session start. Append after each module completes.
 ```
