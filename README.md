@@ -19,6 +19,9 @@ Scheduled, multi-channel notification system with templated messages, escalation
 ### 5. mobile-first-dashboard
 Component architecture for phone-first admin dashboards — bottom navigation, sheet modals, KPI cards, action queues, thumb-zone-optimized design.
 
+### 6. fullstack-agent-squad
+Agent orchestration patterns — maps SuperClaude personas to domain skills, defines feature decomposition (Epic→Story→Task), parallel Wave→Checkpoint execution, subagent context budgets, and persistent KNOWLEDGE.md session memory.
+
 ## Installation
 
 ### Claude Code (CLI)
@@ -37,7 +40,7 @@ cp -r mobile-first-dashboard ~/.claude/skills/
 Or install all at once:
 
 ```bash
-for skill in supabase-nextjs-fullstack multi-currency-ledger property-management-core notification-queue mobile-first-dashboard; do
+for skill in supabase-nextjs-fullstack multi-currency-ledger property-management-core notification-queue mobile-first-dashboard fullstack-agent-squad; do
   cp -r "$skill" ~/.claude/skills/
 done
 ```
