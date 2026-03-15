@@ -1,0 +1,80 @@
+# Onboarding an Existing Project to the Stringz Workflow
+
+> Use this when you open Claude Code on a project that was built without the Stringz Workflow.
+> Claude will analyze the codebase and generate all workflow files.
+
+## When to Use
+- You have an existing codebase with no CLAUDE.md
+- You inherited a project from someone else
+- You built something quick and now want to formalize it
+- A client project needs the workflow retroactively
+
+## The Onboarding Prompt
+
+Paste this into Claude Code from the project root:
+
+```
+Onboard this existing project to the Stringz Workflow v2.
+
+Analyze the codebase and generate:
+
+1. **CLAUDE.md** — Project identity from what exists:
+   - Detect the tech stack (framework, database, styling, deployment)
+   - Map the file structure
+   - Identify conventions already in use
+   - List what NOT to do (based on anti-patterns you find)
+   - Note any active skills from ~/.claude/skills/ that apply
+
+2. **KNOWLEDGE.md** — Pre-populate from what you discover:
+   - Decisions Made: architectural choices visible in the code
+   - Patterns Established: recurring patterns you see
+   - Things That Don't Work: any dead code, commented-out attempts
+   - Schema Notes: database structure if detectable
+   - Environment Notes: any .env.example or deployment config
+
+3. **TASKS.md** — Based on current state:
+   - What's already built (check off completed waves)
+   - What's incomplete or TODO-marked
+   - What needs fixing (obvious bugs or missing features)
+   - What needs polish (empty states, error handling, mobile)
+
+4. **REVIEW.md** — Review rules for this specific project:
+   - Security rules based on the auth/data patterns found
+   - Performance rules based on the framework
+   - Mobile rules if responsive design is present
+
+5. **Quality baseline:**
+   - Run `npm run lint` (or equivalent) and note the state
+   - Run `npm run build` and note if it passes
+   - Run repo-scorer and report the current score
+   - Set up lint/format gates if they don't exist
+
+After generating all files:
+- Git commit: "chore: onboard to Stringz Workflow v2"
+- Report the repo score and top 3 improvements needed
+```
+
+## What to Expect
+
+After onboarding, you'll have:
+- [ ] CLAUDE.md at project root (customized to this codebase)
+- [ ] KNOWLEDGE.md with pre-populated findings
+- [ ] TASKS.md with remaining work identified
+- [ ] REVIEW.md with project-specific review rules
+- [ ] Lint/build gates configured
+- [ ] A repo score baseline
+
+## Next Steps
+
+1. Review the generated files — Claude's analysis is good but not perfect
+2. Run the PREFLIGHT checklist before starting new implementation
+3. Continue with the normal workflow (Phase 3: Implement, or wherever the project is)
+
+## For Projects That Are Already Deployed
+
+If the app is live, also run:
+```
+Use the web-app-qa-audit skill to audit [LIVE_URL].
+Login: [EMAIL] / [PASSWORD]
+```
+This gives you a P0-P3 bug list to add to TASKS.md.

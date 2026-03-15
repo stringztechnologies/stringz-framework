@@ -1,0 +1,58 @@
+# [YOUR COMPANY] — Global Context
+
+> Copy this to ~/.claude/STRINGZ.md and fill in your values.
+> Every Claude Code session on your machine will read it automatically.
+
+## Who I Am
+- **Name:** [YOUR NAME]
+- **Company:** [YOUR COMPANY]
+- **Location:** [YOUR CITY/COUNTRY]
+- **Role:** [YOUR ROLE — e.g., founder, lead developer, freelancer]
+
+## How I Work
+- I follow the **Stringz Workflow v2** (Level 5: Agent-First Engineering)
+- Framework repo: [YOUR FORK or github.com/stringztechnologies/claude-skills]
+- Every project follows 6 phases: Specify → Architect → Implement → Verify+Deploy → Brand → Deliver
+- I use [PRIMARY AI TOOL — e.g., Claude Code (Opus)] as the primary builder
+- I use [ORCHESTRATION TOOL — e.g., AionUI] for parallel session management
+- I deploy to [DEPLOYMENT TARGET — e.g., Coolify, Vercel, AWS]
+
+## My Stack
+- **Framework:** [e.g., Next.js 15 App Router]
+- **Database:** [e.g., Supabase, PlanetScale, Neon]
+- **Styling:** [e.g., Tailwind CSS + shadcn/ui]
+- **Deployment:** [e.g., Coolify, Vercel, Railway]
+- **Testing:** [e.g., Vitest + Playwright]
+- **Linting:** [e.g., Biome, ESLint + Prettier]
+
+## Critical Rule
+**If CLAUDE.md does not exist in this project, ask me:**
+> "This project doesn't have a CLAUDE.md. Should I onboard it to the Stringz Workflow, or start fresh?"
+
+- If I say **onboard**: Analyze the codebase, generate CLAUDE.md, KNOWLEDGE.md, TASKS.md, and REVIEW.md from what exists
+- If I say **start fresh**: Begin Phase 1 (Specify) — interview me to build the spec
+- If I say **quick and scrappy**: Create minimal CLAUDE.md + KNOWLEDGE.md only, skip the full 6-phase process
+
+## Before Any PR or Push
+Always run this verification sequence:
+1. `npm run lint` — must pass clean
+2. `npm run build` — must pass clean
+3. Run architecture-enforcer subagent (if available in .claude/agents/)
+4. Run security-auditor subagent for any auth/input/API changes
+5. Conventional commit messages: `type(scope): description`
+
+## Skills & Agents
+- Global skills at: ~/.claude/skills/
+- Global agents at: ~/.claude/agents/
+- Check which skills apply to the current project before starting implementation
+
+## Communication Preferences
+- [YOUR PREFERENCES — e.g., "Be concise", "Show code first", "Don't summarize"]
+- [ADD OR REMOVE LINES AS NEEDED]
+
+## Context for Claude Desktop / Web Chat
+When starting a conversation on Claude Desktop or web, paste:
+```
+I'm [YOUR NAME] from [YOUR COMPANY]. I follow the Stringz Workflow v2
+(Level 5 Agent-First Engineering). Framework: [YOUR REPO URL]
+```

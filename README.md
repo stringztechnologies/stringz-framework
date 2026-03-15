@@ -57,6 +57,8 @@ Copy these into every new project:
 - `templates/TASKS.md.template` — Wave-based task tracker
 - `templates/REVIEW.md.template` — Review-specific rules (separate from build rules)
 - `templates/PREFLIGHT.md.template` — Pre-implementation environment & project checklist
+- `templates/STRINGZ.md.template` — Personal context — tells every Claude session who you are and how you work
+- `templates/ONBOARDING.md.template` — Onboard existing projects to the Stringz Workflow
 
 ## Skills Library
 
@@ -89,6 +91,15 @@ Install in any project by copying to `.claude/agents/`:
 | `repo-scorer` | 7-metric legibility scorecard (70-point scale) | 2 + 6 |
 | `maintenance-scanner` | Tech debt detection | 6 + weekly |
 | `onboarding-writer` | Generate setup guides and docs | 6 (delivery) |
+
+## First Time Setup
+
+Copy `STRINGZ.md.template` to your global Claude config and fill in your values:
+```bash
+cp claude-skills/templates/STRINGZ.md.template ~/.claude/STRINGZ.md
+# Edit ~/.claude/STRINGZ.md with your name, stack, and preferences
+```
+This tells every Claude Code session on your machine who you are, your workflow, and your stack. It also triggers the critical rule: if a project has no CLAUDE.md, Claude will ask whether to onboard or start fresh.
 
 ## Installation
 
