@@ -14,7 +14,7 @@ Starting a new project? Open Claude and paste:
 ```
 I'm starting a new project. Here's the idea: [describe it in 2-3 sentences].
 
-Follow the Stringz Workflow v2 from github.com/stringztechnologies/claude-skills/WORKFLOW.md
+Follow the Stringz Workflow v2 from github.com/stringztechnologies/stringz-framework/WORKFLOW.md
 
 We're in Phase 1: Specify. Interview me to build the spec. Ask one question at a time.
 ```
@@ -286,7 +286,7 @@ Check the live URL after changes deploy. CSS extraction alone is insufficient �
 ### Post-Delivery:
 - [ ] Run decision-recorder to finalize all ADRs
 - [ ] Run maintenance-scanner as baseline
-- [ ] Extract reusable skills from this project → push to claude-skills repo
+- [ ] Extract reusable skills from this project → push to stringz-framework repo
 - [ ] Update WORKFLOW.md if you discovered a better process
 
 ### Gate: Client says yes. Invoice sent.

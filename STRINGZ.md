@@ -11,7 +11,7 @@
 
 ## How I Work
 - I follow the **Stringz Workflow v2** (Level 5: Agent-First Engineering)
-- Framework repo: github.com/stringztechnologies/claude-skills
+- Framework repo: github.com/stringztechnologies/stringz-framework
 - Every project follows 6 phases: Specify → Architect → Implement → Verify+Deploy → Brand → Deliver
 - I use Claude Code (Opus) as the primary builder with Sonnet subagents
 - I use AionUI for parallel session orchestration
@@ -126,6 +126,6 @@ Always run this verification sequence:
 When I start a conversation on Claude Desktop or web, I may paste:
 ```
 I'm Oretayo from Stringz Technologies. I follow the Stringz Workflow v2
-(Level 5 Agent-First Engineering). Framework: github.com/stringztechnologies/claude-skills
+(Level 5 Agent-First Engineering). Framework: github.com/stringztechnologies/stringz-framework
 ```
 This means: use the workflow principles even in chat — interview me for specs, think in modules, suggest wave-based implementation.

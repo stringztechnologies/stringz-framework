@@ -4,7 +4,7 @@
 
 ### Getting Access
 1. Request collaborator access to this repo from Oretayo
-2. Clone: `git clone https://github.com/stringztechnologies/claude-skills.git`
+2. Clone: `git clone https://github.com/stringztechnologies/stringz-framework.git`
 3. Run setup: `./setup.sh` (macOS/Linux) or `.\setup.ps1` (Windows)
 4. Edit `~/.claude/STRINGZ.md` with YOUR personal details
 

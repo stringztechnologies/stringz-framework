@@ -31,8 +31,8 @@ The system has three layers:
 ## Step 1: Install (One Time Per Machine)
 
 ```bash
-git clone https://github.com/stringztechnologies/claude-skills.git
-cd claude-skills
+git clone https://github.com/stringztechnologies/stringz-framework.git
+cd stringz-framework
 ./setup.sh
 ```
 

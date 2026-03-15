@@ -11,7 +11,7 @@
 
 ## How I Work
 - I follow the **Stringz Workflow v2** (Level 5: Agent-First Engineering)
-- Framework repo: [YOUR FORK or github.com/stringztechnologies/claude-skills]
+- Framework repo: [YOUR FORK or github.com/stringztechnologies/stringz-framework]
 - Every project follows 6 phases: Specify → Architect → Implement → Verify+Deploy → Brand → Deliver
 - I use [PRIMARY AI TOOL — e.g., Claude Code (Opus)] as the primary builder
 - I use [ORCHESTRATION TOOL — e.g., AionUI] for parallel session management

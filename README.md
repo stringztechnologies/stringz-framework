@@ -17,8 +17,8 @@
 ## Quick Start
 
 ```bash
-git clone https://github.com/stringztechnologies/claude-skills.git
-cd claude-skills
+git clone https://github.com/stringztechnologies/stringz-framework.git
+cd stringz-framework
 ./setup.sh
 ```
 
@@ -106,8 +106,8 @@ Install in any project by copying to `.claude/agents/`:
 
 ### Automated (recommended):
 ```bash
-git clone https://github.com/stringztechnologies/claude-skills.git
-cd claude-skills
+git clone https://github.com/stringztechnologies/stringz-framework.git
+cd stringz-framework
 ./setup.sh
 ```
 The script checks prerequisites, copies STRINGZ.md to `~/.claude/`, symlinks all skills and agents, and prints a summary. Edit `~/.claude/STRINGZ.md` with your personal details after running.
@@ -125,10 +125,10 @@ AionUI auto-detects Claude Code and provides a visual workspace for running para
 ### Per-project setup:
 Templates are copied automatically when Claude runs First Contact on a new project. To copy manually:
 ```bash
-cp claude-skills/templates/CLAUDE.md.template ./CLAUDE.md
-cp claude-skills/templates/KNOWLEDGE.md.template ./KNOWLEDGE.md
-cp claude-skills/templates/TASKS.md.template ./TASKS.md
-cp claude-skills/templates/REVIEW.md.template ./REVIEW.md
+cp stringz-framework/templates/CLAUDE.md.template ./CLAUDE.md
+cp stringz-framework/templates/KNOWLEDGE.md.template ./KNOWLEDGE.md
+cp stringz-framework/templates/TASKS.md.template ./TASKS.md
+cp stringz-framework/templates/REVIEW.md.template ./REVIEW.md
 ```
 
 ## Contributing
