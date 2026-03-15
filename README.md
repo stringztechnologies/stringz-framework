@@ -14,15 +14,19 @@
 
 ## Quick Start
 
-Starting a new project? Open Claude and paste:
-
+```bash
+git clone https://github.com/stringztechnologies/claude-skills.git
+cd claude-skills
+./setup.sh
 ```
-I'm starting a new project. Here's the idea: [2-3 sentences].
 
-Follow the Stringz Workflow v2 from github.com/stringztechnologies/claude-skills/WORKFLOW.md
+That's it. Open Claude Code in any project and the workflow activates automatically.
 
-We're in Phase 1: Specify. Interview me to build the spec. Ask one question at a time.
+### Starting a new project:
 ```
+mkdir my-project && cd my-project && claude
+```
+Claude detects no CLAUDE.md, runs First Contact when you ask it to build something, and flows into the 6-phase workflow.
 
 ## The Workflow
 
@@ -92,28 +96,15 @@ Install in any project by copying to `.claude/agents/`:
 | `maintenance-scanner` | Tech debt detection | 6 + weekly |
 | `onboarding-writer` | Generate setup guides and docs | 6 (delivery) |
 
-## First Time Setup
-
-Copy `STRINGZ.md.template` to your global Claude config and fill in your values:
-```bash
-cp claude-skills/templates/STRINGZ.md.template ~/.claude/STRINGZ.md
-# Edit ~/.claude/STRINGZ.md with your name, stack, and preferences
-```
-This tells every Claude Code session on your machine who you are, your workflow, and your stack. It also triggers the critical rule: if a project has no CLAUDE.md, Claude will ask whether to onboard or start fresh.
-
 ## Installation
 
-### Skills (global — available in all projects):
+### Automated (recommended):
 ```bash
-# Clone the repo
 git clone https://github.com/stringztechnologies/claude-skills.git
-
-# Symlink skills to global Claude Code location
-ln -s $(pwd)/claude-skills/skills/* ~/.claude/skills/
-
-# Symlink agents
-ln -s $(pwd)/claude-skills/agents/* ~/.claude/agents/
+cd claude-skills
+./setup.sh
 ```
+The script checks prerequisites, copies STRINGZ.md to `~/.claude/`, symlinks all skills and agents, and prints a summary. Edit `~/.claude/STRINGZ.md` with your personal details after running.
 
 ### Orchestration GUI (recommended):
 ```bash
@@ -126,13 +117,12 @@ brew install aionui
 AionUI auto-detects Claude Code and provides a visual workspace for running parallel agent sessions.
 
 ### Per-project setup:
+Templates are copied automatically when Claude runs First Contact on a new project. To copy manually:
 ```bash
-# Copy templates into a new project
 cp claude-skills/templates/CLAUDE.md.template ./CLAUDE.md
 cp claude-skills/templates/KNOWLEDGE.md.template ./KNOWLEDGE.md
 cp claude-skills/templates/TASKS.md.template ./TASKS.md
 cp claude-skills/templates/REVIEW.md.template ./REVIEW.md
-cp claude-skills/templates/PREFLIGHT.md.template ./PREFLIGHT.md
 ```
 
 ## The Philosophy
