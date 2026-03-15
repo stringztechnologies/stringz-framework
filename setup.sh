@@ -154,4 +154,8 @@ echo "  Usage:"
 echo "  - New project:      mkdir my-project && cd my-project && claude"
 echo "  - Existing project:  cd my-project && claude"
 echo "  - Claude will detect if workflow files are missing and guide you through setup"
+echo "  - To update later:  ./update.sh"
+echo ""
+VERSION=$(grep -o 'version: [0-9.]*' "$REPO_DIR/WORKFLOW.md" 2>/dev/null | grep -o '[0-9.]*' || echo "unknown")
+echo "  Framework version: $VERSION"
 echo ""

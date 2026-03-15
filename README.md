@@ -1,5 +1,7 @@
 # Stringz Technologies — Claude Skills & Workflow Framework
 
+**Framework Version: 2.1**
+
 > **Level 5: Agent-First Engineering — March 2026**
 > From intent to deployed product in one day. Every time.
 > Mechanical enforcement. Parallel execution. Self-verifying agents.
@@ -21,6 +23,10 @@ cd claude-skills
 ```
 
 That's it. Open Claude Code in any project and the workflow activates automatically.
+
+To update later: `./update.sh`
+
+Windows users: use `.\setup.ps1` instead of `./setup.sh`
 
 ### Starting a new project:
 ```
@@ -124,6 +130,10 @@ cp claude-skills/templates/KNOWLEDGE.md.template ./KNOWLEDGE.md
 cp claude-skills/templates/TASKS.md.template ./TASKS.md
 cp claude-skills/templates/REVIEW.md.template ./REVIEW.md
 ```
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for how to add skills, agents, and templates. Team members run `./update.sh` after merges to pick up new additions.
 
 ## The Philosophy
 
