@@ -115,20 +115,15 @@ echo "Linking agents..."
 mkdir -p "$CLAUDE_DIR/agents"
 
 AGENTS_LINKED=0
-AGENTS_SKIPPED=0
 
 for agent_file in "$REPO_DIR"/agents/*.md; do
   agent_name=$(basename "$agent_file")
   target="$CLAUDE_DIR/agents/$agent_name"
-  if [ -L "$target" ] || [ -f "$target" ]; then
-    AGENTS_SKIPPED=$((AGENTS_SKIPPED + 1))
-  else
-    ln -s "$agent_file" "$target"
-    AGENTS_LINKED=$((AGENTS_LINKED + 1))
-  fi
+  ln -sf "$agent_file" "$target"
+  AGENTS_LINKED=$((AGENTS_LINKED + 1))
 done
 
-echo "  ✅ $AGENTS_LINKED agents linked ($AGENTS_SKIPPED already existed)"
+echo "  ✅ $AGENTS_LINKED agents linked (force-linked)"
 echo ""
 
 # ─── 5. Check for hooks blocking .md files ───────────────

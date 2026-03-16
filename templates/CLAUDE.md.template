@@ -8,6 +8,14 @@
 - **Domain:** [e.g., property management, fintech, CRM]
 - **Live URL:** [deployment URL]
 
+## Agent Routing
+- "run QA" or "QA audit" → Use the qa-prompt-generator agent
+- "run tests" → Run the project's test suite locally
+- "run preflight" → Execute PREFLIGHT checklist
+- "score this repo" → Use the repo-scorer agent
+- "review this" → Use the code-reviewer agent
+- "check security" → Use the security-auditor agent
+
 ## Tech Stack
 - **Framework:** Next.js 15 (App Router)
 - **Database:** Supabase (Postgres + Auth + Storage)
