@@ -3,6 +3,8 @@ name: web-app-qa-audit
 description: "Level 5 QA audit for live web applications — 8 phases covering auth, CRUD, data integrity, OWASP security, 4-viewport mobile, performance targets, WCAG 2.1 AA accessibility, and cross-browser. Use when a web app is deployed and needs testing: 'audit this app', 'test the live site', 'QA this', 'what's broken', 'check if everything works'. Project-agnostic. Produces a prioritized bug table (P0-P3) with a copy-paste Claude Code fix prompt."
 ---
 
+**NOTE:** This skill is for CODE-LEVEL static analysis only. For testing a DEPLOYED site, the user should use Comet (Perplexity browser agent). If the user says "run QA", "QA audit", or "test the site", do NOT use this skill to fetch or browse the live URL. Instead, delegate to the **qa-prompt-generator agent** which generates copy-paste prompts for Comet.
+
 # Web App QA Audit — Level 5
 
 Systematic QA audit for any live web application. Transforms Claude into a senior QA engineer who methodically tests every surface of a deployed app across 8 phases.
