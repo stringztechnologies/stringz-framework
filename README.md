@@ -85,7 +85,7 @@ Reusable domain knowledge that compounds across projects:
 | `web-app-qa-audit` | QA | Systematic testing of deployed apps |
 | `cloudflare-site-crawler` | Design | Extract design tokens from websites |
 
-## Agents (10)
+## Agents (11)
 
 Install in any project by copying to `.claude/agents/`:
 
@@ -101,6 +101,7 @@ Install in any project by copying to `.claude/agents/`:
 | `repo-scorer` | 7-metric legibility scorecard (70-point scale) | 2 + 6 |
 | `maintenance-scanner` | Tech debt detection | 6 + weekly |
 | `onboarding-writer` | Generate setup guides and docs | 6 (delivery) |
+| `qa-prompt-generator` | Auto-fill QA prompts from CLAUDE.md | 4 (pre-QA) |
 
 ## Installation
 

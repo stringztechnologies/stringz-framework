@@ -203,8 +203,12 @@ All tests must pass before deployment.
 git push  # Coolify auto-deploys
 ```
 
-### Step 4: Independent QA (different AI, different context)
-Open Comet browser or a fresh Claude session and paste the QA audit prompt:
+### Step 4: Generate QA Prompts
+Run the qa-prompt-generator agent to get ready-to-paste Comet prompts with your project details pre-filled:
+```
+Use the qa-prompt-generator agent to generate my QA prompts.
+```
+Then open Comet browser or a fresh Claude session and paste the prompts:
 
 ```
 You are a senior QA engineer. Test https://[your-url] systematically.
@@ -360,6 +364,7 @@ Push → Auto-Deploy → Visual-Verifier → Comet QA → Security Audit → Fix
 | repo-scorer | agents/repo-scorer.md | Legibility scorecard (7 metrics) | 2 (setup) + 6 (delivery) | Sonnet |
 | maintenance-scanner | agents/maintenance-scanner.md | Tech debt detection | 6 (post-delivery) + weekly | Sonnet |
 | onboarding-writer | agents/onboarding-writer.md | Generate docs and guides | 6 (delivery) | Sonnet |
+| qa-prompt-generator | agents/qa-prompt-generator.md | Auto-fill QA prompts from CLAUDE.md | 4 (pre-QA) | Sonnet |
 
 ---
 

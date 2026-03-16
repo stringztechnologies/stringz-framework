@@ -4,6 +4,20 @@
 
 ---
 
+## Quick Start — Auto-Generated Prompts
+
+Instead of manually filling in brackets, run this in Claude Code from your project directory:
+
+```
+Use the qa-prompt-generator agent to generate my QA prompts.
+```
+
+Claude reads your CLAUDE.md, fills in the URL, modules, and credentials reference, and outputs all 8 prompts organized in 3 batches — ready to paste into Comet.
+
+If you prefer to fill in the prompts manually, continue reading below.
+
+---
+
 ## What Tool Do I Use?
 
 This guide says "Comet" throughout, but **the prompts work in any AI tool that can browse the web.** Here's how to pick:
