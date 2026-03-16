@@ -116,6 +116,16 @@ When running in YOLO or autonomous mode:
 - Make reasonable decisions and log them to KNOWLEDGE.md
 - Never block waiting for user input — decide, act, document
 
+## Agent Usage Rules
+- Use **qa-prompt-generator** for ALL QA, testing, or audit requests ("run QA", "test the site", "QA audit", "generate QA prompts")
+- Use **test-writer** for writing unit/integration tests in code
+- Use **repo-scorer** for evaluating repository health
+- Use **security-auditor** for code-level security scanning
+- Use **brand-aligner** for visual brand compliance
+- Use **architecture-enforcer** for structural and pattern enforcement
+- Use **code-reviewer** for pull request and code quality reviews
+- Use **visual-verifier** for screenshot-based UI verification
+
 ## Command Shortcuts
 - **"run QA"** or **"start QA"** → Use the qa-prompt-generator agent (`~/.claude/agents/qa-prompt-generator.md`). Read CLAUDE.md, extract project details, output pre-filled Comet prompts in 3 batches. Do NOT test the site yourself.
 - **"onboard"** or **"onboard this project"** → Analyze codebase, generate CLAUDE.md, KNOWLEDGE.md, REVIEW.md, TASKS.md, run repo-scorer

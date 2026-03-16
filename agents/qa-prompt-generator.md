@@ -1,6 +1,6 @@
 ---
 name: qa-prompt-generator
-description: Reads CLAUDE.md to extract the deployed URL, modules, and credentials location, then generates all 8 ready-to-paste Comet QA prompts with brackets pre-filled. Run when user says "run QA", "start QA audit", or "generate QA prompts".
+description: "MUST BE USED for any QA-related request. When the user says 'run QA', 'start QA', 'QA audit', 'test the site', 'generate QA prompts', or any request about testing a deployed application, ALWAYS delegate to this agent. This agent reads CLAUDE.md, extracts the deployed URL and modules, and generates ready-to-paste Comet browser testing prompts. It does NOT test sites itself — it generates prompts for external browser agents."
 tools: Read, Glob, Grep
 model: sonnet
 ---
