@@ -16,6 +16,14 @@
 - "review this" → Use the code-reviewer agent
 - "check security" → Use the security-auditor agent
 
+## Git Workflow
+- Branch from main for all work: git checkout -b type/short-description
+- Branch types: feat | fix | chore | docs | refactor | test | security
+- Commit with conventional commits: type(scope): description
+- Merge to main when wave/checkpoint passes
+- Delete branch after merge
+- Never commit directly to main
+
 ## Tech Stack
 - **Framework:** Next.js 15 (App Router)
 - **Database:** Supabase (Postgres + Auth + Storage)

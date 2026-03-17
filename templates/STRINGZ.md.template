@@ -131,6 +131,28 @@ When running in YOLO or autonomous mode:
 - **"onboard"** or **"onboard this project"** → Analyze codebase, generate CLAUDE.md, KNOWLEDGE.md, REVIEW.md, TASKS.md, run repo-scorer
 - **"run preflight"** → Execute the PREFLIGHT checklist
 
+## Git Workflow
+Branch naming: type/short-description
+Types: feat, fix, chore, docs, refactor, test, security
+
+Convention:
+- Never commit directly to main — always branch and merge
+- main is always deployable (Coolify/CI deploys from main)
+- Each Phase 3 wave = one branch (feat/wave-1-auth, feat/wave-2-crud, etc.)
+- QA fix cycles = one branch per round (fix/qa-round-1, fix/qa-round-2)
+- Delete branches after merging
+
+Branch lifecycle:
+  git checkout -b feat/short-description
+  # ... work ...
+  git add -A && git commit -m "feat: description"
+  git push -u origin feat/short-description
+  # merge to main (PR or direct merge for solo dev)
+  git checkout main && git merge feat/short-description
+  git push
+  git branch -d feat/short-description
+  git push origin --delete feat/short-description
+
 ## Communication Preferences
 - [YOUR PREFERENCES — e.g., "Be concise", "Show code first", "Don't summarize"]
 - [ADD OR REMOVE LINES AS NEEDED]

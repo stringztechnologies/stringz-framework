@@ -139,20 +139,34 @@ export CLAUDE_CODE_SUBAGENT_MODEL=claude-sonnet-4-6
 
 ### The Wave-Checkpoint Rhythm:
 
+Each wave follows this cycle:
+  1. Branch: `git checkout -b feat/wave-N-description`
+  2. Implement the wave's TASKS.md items
+  3. Checkpoint: lint → build → architecture-enforcer → tests pass
+  4. If checkpoint passes: merge to main, delete branch, deploy
+  5. If checkpoint fails: fix on the branch, re-run checkpoint
+  6. Start next wave from fresh main
+
 ```
 WAVE:
-  1. Start fresh session. Claude reads CLAUDE.md + KNOWLEDGE.md
-  2. Give it the current phase from TASKS.md
-  3. Let it build (don't micromanage)
+  1. git checkout -b feat/wave-N-description
+  2. Start fresh session. Claude reads CLAUDE.md + KNOWLEDGE.md
+  3. Give it the current phase from TASKS.md
+  4. Let it build (don't micromanage)
 
 CHECKPOINT (after each wave):
-  4. Run lint: npm run lint
-  5. Run build: npm run build
-  6. Run tests: npm run test (if tests exist)
-  7. Run architecture-enforcer subagent
-  8. Git commit with conventional commit message
-  9. Claude updates KNOWLEDGE.md
-  10. Decision-recorder subagent generates ADRs
+  5. Run lint: npm run lint
+  6. Run build: npm run build
+  7. Run tests: npm run test (if tests exist)
+  8. Run architecture-enforcer subagent
+  9. Git commit with conventional commit message
+  10. If checkpoint passes:
+      git checkout main && git merge feat/wave-N-description
+      git push
+      git branch -d feat/wave-N-description
+      git push origin --delete feat/wave-N-description
+  11. Claude updates KNOWLEDGE.md
+  12. Decision-recorder subagent generates ADRs
 
 CONTEXT MANAGEMENT:
   - /clear between waves (fresh context per phase)
@@ -220,11 +234,22 @@ Categorize as P0 (broken), P1 (wrong), P2 (polish), P3 (nice-to-have).
 Output a Claude Code prompt that fixes all P0s and P1s.
 ```
 
-### Step 5: Fix Cycle
-1. Paste QA fix prompt into Claude Code
-2. Run architecture-enforcer after fixes
-3. Push → auto-deploy
-4. Re-audit until zero P0s
+### Step 5: Fix Cycle (QA fix branches)
+
+QA fix cycle:
+  1. Branch: `git checkout -b fix/qa-round-N`
+  2. Apply fixes from the QA consolidated report
+  3. Push, deploy, re-run failed QA phases only
+  4. If clean: merge to main, delete branch
+  5. If issues remain: fix/qa-round-N+1
+
+Workflow:
+1. `git checkout -b fix/qa-round-1`
+2. Paste QA fix prompt into Claude Code
+3. Run architecture-enforcer after fixes
+4. Push → auto-deploy → re-audit
+5. If zero P0s: merge to main, delete branch
+6. If P0s remain: `git checkout -b fix/qa-round-2` and repeat
 
 ### Step 6: Security Audit
 ```
